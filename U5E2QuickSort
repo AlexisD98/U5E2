@@ -1,0 +1,45 @@
+package u5e2.quicksort;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public class U5E2QuickSort {
+    public static void main(String[] args) {
+        List <Integer> ALista= new ArrayList <Integer>();
+        Integer [] arreglo = new Integer[ALista.size()];
+        //Datos
+        ALista.add(4);
+        ALista.add(3);
+        ALista.add(1);
+        ALista.add(2);
+        ALista.add(8);//1,2,3,4,8
+        arreglo =ALista.toArray(arreglo);
+        int izq=0,der=arreglo.length-1;
+        quicksort(arreglo,izq,der);
+        for(int j=0; j<arreglo.length;j++){
+            System.out.print(arreglo[j]+",");
+        }
+    }
+    private static void quicksort(Integer [] arreglo,int izq, int der){
+        int pivote=arreglo[izq],aux,i=izq,d=der;
+        
+        while(i<d){
+            while(arreglo[i]<=pivote && i<d)
+                i++;
+            while(arreglo[d]>pivote)
+                d--;
+            if(i<d){
+                aux=arreglo[i];
+                arreglo[i]=arreglo[d];
+                arreglo[d]=aux;
+            }
+        }
+        arreglo[izq]=arreglo[d];
+        arreglo[d]=pivote;
+        if(izq<d-1){
+            quicksort(arreglo,izq,d-1);
+            if(d+1<der){
+                quicksort(arreglo,d+1,der);
+            }
+        }
+    }
+}
